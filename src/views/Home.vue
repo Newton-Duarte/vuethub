@@ -1,42 +1,39 @@
 <template>
-  <div class="home">
-    <input
-      class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4"
-      v-model="term"
-      type="search"
-      placeholder="Enter a GitHub User ..."
-      name="search"
-      id="search"
-      @keyup.enter="search"
-    >
-    <div v-if="githubUser">
-      <h4>{{ githubUser.name }}</h4>
-      <img :src="githubUser.avatar_url" :alt="githubUser.name">
-      <p>Public repos: {{ githubUser.public_repos }}</p>
-    </div>
+  <div class="home py-4">
+    <h1 class="text-3xl">Search for Github users</h1>
+    <p class="text-gray-600">Enter a user and hit Enter!</p>
+    <SearchBox @search="search" />
+    <CardUser
+      v-if="githubUser"
+      :user="githubUser"
+    />
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import SearchBox from '@/components/SearchBox';
+import CardUser from '@/components/CardUser';
 
 export default {
   name: 'Home',
+  components: {
+    SearchBox,
+    CardUser
+  },
   data: () => ({
     githubUser: null,
-    term: '',
-    timeout: null
   }),
   methods: {
-    async getGithubUser() {
-      const response = await axios.get(`https://api.github.com/users/${this.term.trim()}`);
+    async getGithubUser(user) {
+      const response = await axios.get(`https://api.github.com/users/${user}`);
       this.githubUser = response.data;
       console.log(response.data);
     },
-    search() {
-      clearTimeout(this.timeout);
-      this.timeout = null;
-      setTimeout(() => this.getGithubUser(), 2000);
+    search(term) {
+      if (term.length) {
+        this.getGithubUser(term);
+      }
     }
   }
 }
