@@ -1,28 +1,33 @@
 <template>
-  <div class="max-w-sm rounded border overflow-hidden shadow-lg">
-    <img class="w-full rounded-full" :src="user.avatar_url" :alt="user.name">
-    <div class="px-6 py-4">
-      <div class="font-bold text-xl mb-2">{{ user.name }}</div>
+  <div class="flex bg-white rounded border border-gray-400 overflow-hidden shadow-lg px-6 py-4">
+    <div class="w-1/4">
+      <img class="rounded-full m-auto" :src="user.avatar_url" :alt="user.name">
+      <div class="font-bold text-xl my-3">{{ user.name }}</div>
       <p class="text-gray-700 text-base">
         {{ user.bio }}
       </p>
-    </div>
-    <div class="px-6 py-4">
-      Public Repos: {{ user.public_repos }}
-      Memer since: {{ new Date(user.created_at).toLocaleString() }}
       <div>
-        <a :href="user.html_url" target="_blank">{{ user.html_url }}</a>
+        Public Repos: {{ user.public_repos }}
+        Memer since: {{ new Date(user.created_at).toLocaleString() }}
+        <div>
+          <a :href="user.html_url" target="_blank">{{ user.html_url }}</a>
+        </div>
       </div>
     </div>
-    <!-- <div class="px-6 py-4">
-      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#photography</span>
-      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#travel</span>
-      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">#winter</span>
-    </div> -->
+    <div class="flex flex-wrap w-3/4 pl-6">
+      <CardRepo
+        class="my-1"
+        v-for="repo in user.repos"
+        :key="repo.name"
+        :repo="repo"
+      />
+    </div>
   </div>
 </template>
 
 <script>
+import CardRepo from '@/components/CardRepo';
+
 export default {
   props: {
     user: {
@@ -34,9 +39,13 @@ export default {
         bio: '',
         public_repos: '',
         created_at: '',
-        location: ''
+        location: '',
+        repos: []
       })
     }
+  },
+  components: {
+    CardRepo
   }
 }
 </script>
