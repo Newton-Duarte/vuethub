@@ -53,6 +53,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+a:hover {
+  text-decoration: underline;
+}
 </style>

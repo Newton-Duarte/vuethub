@@ -28,10 +28,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 
-a:hover {
-  text-decoration: underline;
-}
-
 .v-enter,
 .v-leave-to {
   opacity: 0;
