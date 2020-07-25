@@ -6,6 +6,10 @@ import './assets/styles/index.css'
 
 Vue.config.productionTip = false
 
+Vue.filter('date', date => {
+  return new Date(date).toLocaleDateString('pt-BR');
+});
+
 new Vue({
   router,
   store,
