@@ -1,4 +1,13 @@
-# vuethub
+[![Netlify Status](https://api.netlify.com/api/v1/badges/de6fcd8c-3fe4-4ff7-9dbb-8ab24bcaa726/deploy-status)](https://app.netlify.com/sites/vuethub/deploys)
+
+# Vuethub - A project to practice Vue.js
+
+Search Github users and see their repos!
+
+## Screenshots
+
+###### Home
+![Home](/screenshots/01home.jpg)
 
 ## Project setup
 ```
