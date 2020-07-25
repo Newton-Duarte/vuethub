@@ -1,6 +1,6 @@
 <template>
   <input
-    class="bg-white focus:outline-none focus:shadow-outline border border-gray-400 rounded-lg py-2 px-4"
+    class="w-full bg-white focus:outline-none focus:shadow-outline border border-gray-400 rounded py-3 px-4"
     type="search"
     placeholder="e.g newton-duarte"
     name="search"
